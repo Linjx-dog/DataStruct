@@ -1,23 +1,27 @@
 ﻿
-//SqList 线性表的顺序存储结构
+// 线性表的顺序存储结构
 
 #include <iostream>
 #define MAXSIZE 20
 typedef int ElemType;
+
 struct LNode
 {
     ElemType Data[MAXSIZE];
     int Last;
 }; 
 typedef struct LNode* List;
+
+//初始化线性表 
 List initList() {
     List Ptrl;
-    Ptrl = (List)malloc(sizeof(struct LNode));
+    Ptrl = (List)malloc(sizeof(struct LNode));//分配空间
     if (Ptrl) {
-        Ptrl->Last = -1;
+        Ptrl->Last = -1;//指向当前元素的指针
     }
     return Ptrl;
 }
+//根据元素查找，返回顺序
 int findIdByElem(ElemType X, List Ptrl) {
     int i = 0;
     while (i <= Ptrl->Last && Ptrl->Data[i] != X)
@@ -27,6 +31,7 @@ int findIdByElem(ElemType X, List Ptrl) {
         return i+1;
     }
 }
+//根据顺序查找，返回元素
 ElemType findElemById(int i, List Ptrl) {
     if (Ptrl->Last == -1) {
         printf("empty");
@@ -38,6 +43,7 @@ ElemType findElemById(int i, List Ptrl) {
     }
     return Ptrl->Data[i - 1];
 }
+//插入元素
 void insertElem(ElemType X, int i, List Ptrl) {
     int j;
     if (Ptrl->Last == MAXSIZE - 1) {
@@ -56,6 +62,7 @@ void insertElem(ElemType X, int i, List Ptrl) {
         return;
     
 }
+//删除元素
 void deleteElem(int i, List Ptrl) {
     int j;
     if (Ptrl->Last == - 1) {
@@ -72,6 +79,7 @@ void deleteElem(int i, List Ptrl) {
         return;
     
 }
+//输出线性表序列
 void printList(List Ptrl) {
     printf("线性表共有%d个元素\n", Ptrl->Last+1);
     for (int i = 0; i < Ptrl->Last+1; i++) {
